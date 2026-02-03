@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Câu Lạc Bộ Bóng Đá Phoenix | Giới Thiệu Thêm</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(0, 0, 0, 0.85);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-img {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #6a11cb, #2575fc);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .logo-text h1 {
+            font-size: 28px;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 1px;
+        }
+
+        .logo-text p {
+            font-size: 14px;
+            color: #aaa;
+            letter-spacing: 2px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover, nav a.active {
+            color: #6a11cb;
+            background: rgba(106, 17, 203, 0.1);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: #6a11cb;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 80%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1511207538754-e8555f2bc187?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            position: relative;
+            margin-top: 100px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            text-align: center;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            color: #ddd;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 100px 0;
+            background: #2c1b4d;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            margin-bottom: 15px;
+            color: #9d4edd;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: #9d4edd;
+        }
+
+        .section-title p {
+            color: #aaa;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Introduction Content */
+        .intro-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        .intro-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(157, 78, 221, 0.1);
+        }
+
+        .intro-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(157, 78, 221, 0.3);
+        }
+
+        .intro-card h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #9d4edd;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .intro-card h3 i {
+            font-size: 28px;
+        }
+
+        /* Values Section */
+        .values-section {
+            margin-bottom: 80px;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .value-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(157, 78, 221, 0.1);
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(157, 78, 221, 0.3);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .value-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, #6a11cb, #2575fc);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 32px;
+            color: white;
+        }
+
+        .value-card h4 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #9d4edd;
+        }
+
+        /* Facilities Section */
+        .facilities-section {
+            margin-bottom: 80px;
+        }
+
+        .facility-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            border: 1px solid rgba(157, 78, 221, 0.1);
+        }
+
+        .facility-image {
+            flex: 1;
+            min-width: 300px;
+            height: 250px;
+            background: linear-gradient(45deg, #6a11cb, #2575fc);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            color: white;
+        }
+
+        .facility-content {
+            flex: 2;
+            padding: 30px;
+            min-width: 300px;
+        }
+
+        .facility-content h4 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #9d4edd;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            margin-bottom: 80px;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid rgba(157, 78, 221, 0.1);
+        }
+
+        .testimonial-card:hover {
+            border-color: rgba(157, 78, 221, 0.3);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .testimonial-text::before {
+            content: '"';
+            font-size: 60px;
+            color: #9d4edd;
+            position: absolute;
+            left: -10px;
+            top: -20px;
+            opacity: 0.5;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #6a11cb, #2575fc);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+        }
+
+        .author-info h5 {
+            font-size: 18px;
+            color: #9d4edd;
+            margin-bottom: 5px;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a0d2e;
+            padding: 40px 0 20px;
+            text-align: center;
+            border-top: 3px solid #6a11cb;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-logo span {
+            font-size: 24px;
+            font-weight: bold;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #6a11cb;
+        }
+
+        .copyright {
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        .copyright a {
+            color: #6a11cb;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .darknessgod {
+            font-family: 'Courier New', monospace;
+            font-size: 18px;
+            color: #9d4edd;
+            margin-top: 10px;
+            letter-spacing: 2px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .darknessgod::before, .darknessgod::after {
+            content: '★';
+            margin: 0 10px;
+            color: #9d4edd;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            nav ul {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h2 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .facility-card {
+                flex-direction: column;
+            }
+
+            .facility-image {
+                min-width: 100%;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="anh1.png" alt="Phoenix Football Club Logo" class="logo-img">
+                    <div class="logo-text">
+                        <h1>PHOENIX FOOTBALL CLUB</h1>
+                        <p>VƯƠN CAO TỪ TRO TÀN</p>
+                    </div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Trang Chủ</a></li>
+                        <li><a href="trang2.html">Thông Tin CLB</a></li>
+                        <li><a href="trang3.html" class="active">Giới Thiệu Thêm</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>GIỚI THIỆU SÂU HƠN VỀ PHOENIX FC</h2>
+                <p>Khám phá thêm về triết lý đào tạo, cơ sở vật chất và những giá trị cốt lõi tạo nên sự khác biệt của chúng tôi</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="main-content">
+        <div class="container">
+            <!-- Introduction Content -->
+            <div class="section-title">
+                <h2>GIÁ TRỊ CỐT LÕI</h2>
+                <p>Những nguyên tắc và triết lý định hình nên Phoenix Football Club</p>
+            </div>
+            
+            <div class="intro-content">
+                <div class="intro-card">
+                    <h3><i class="fas fa-bullseye"></i> Tầm Nhìn & Sứ Mệnh</h3>
+                    <p><strong>Tầm nhìn:</strong> Trở thành câu lạc bộ đào tạo bóng đá trẻ hàng đầu Việt Nam, cung cấp nền tảng vững chắc cho các tài năng trẻ phát triển toàn diện cả về thể chất lẫn tinh thần.</p>
+                    <p><strong>Sứ mệnh:</strong> Khơi dậy và nuôi dưỡng đam mê bóng đá, đào tạo những cầu thủ không chỉ giỏi về kỹ thuật mà còn có phẩm chất đạo đức tốt, tinh thần kỷ luật cao và khả năng thích nghi với môi trường bóng đá chuyên nghiệp.</p>
+                </div>
+                
+                <div class="intro-card">
+                    <h3><i class="fas fa-chart-line"></i> Triết Lý Đào Tạo</h3>
+                    <p>Chúng tôi tin rằng bóng đá không chỉ là môn thể thao mà còn là công cụ giáo dục hiệu quả. Triết lý đào tạo của Phoenix FC dựa trên 3 trụ cột chính:</p>
+                    <ul style="margin-top: 15px; padding-left: 20px;">
+                        <li><strong>Kỹ thuật cá nhân:</strong> Phát triển toàn diện kỹ năng bóng đá cơ bản đến nâng cao</li>
+                        <li><strong>Thể lực & sức khỏe:</strong> Xây dựng nền tảng thể lực vững chắc</li>
+                        <li><strong>Tư duy chiến thuật:</strong> Rèn luyện khả năng đọc trận đấu và ra quyết định</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Values Section -->
+            <div class="section-title">
+                <h2>GIÁ TRỊ CỐT LÕI</h2>
+                <p>Những nguyên tắc dẫn dắt mọi hoạt động của câu lạc bộ</p>
+            </div>
+            
+            <div class="values-section">
+                <div class="values-grid">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h4>Đoàn Kết</h4>
+                        <p>Chúng tôi tin vào sức mạnh của tập thể. Mỗi thành viên đều là một mảnh ghép quan trọng tạo nên sự thành công chung.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h4>Tôn Trọng</h4>
+                        <p>Tôn trọng đối thủ, tôn trọng trọng tài, tôn trọng đồng đội và trên hết là tôn trọng chính mình.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h4>Nỗ Lực</h4>
+                        <p>Thành công không đến từ may mắn mà từ sự nỗ lực không ngừng nghỉ trong từng buổi tập, từng trận đấu.</p>
+                    </div>
+                    
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h4>Đam Mê</h4>
+                        <p>Đam mê là ngọn lửa thúc đẩy chúng tôi vượt qua mọi khó khăn, thử thách để theo đuổi ước mơ bóng đá.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Facilities Section -->
+            <div class="section-title">
+                <h2>CƠ SỞ VẬT CHẤT</h2>
+                <p>Hệ thống trang thiết bị và sân bãi hiện đại phục vụ đào tạo</p>
+            </div>
+            
+            <div class="facilities-section">
+                <div class="facility-card">
+                    <div class="facility-image">
+                        <i class="fas fa-futbol"></i>
+                    </div>
+                    <div class="facility-content">
+                        <h4>Sân tập tiêu chuẩn FIFA</h4>
+                        <p>3 sân cỏ tự nhiên và 2 sân cỏ nhân tạo đạt tiêu chuẩn FIFA, được bảo trì thường xuyên. Hệ thống chiếu sáng hiện đại cho phép tập luyện vào buổi tối.</p>
+                        <p>Các sân được trang bị hệ thống thoát nước tự động, đảm bảo có thể sử dụng trong mọi điều kiện thời tiết.</p>
+                    </div>
+                </div>
+                
+                <div class="facility-card">
+                    <div class="facility-image">
+                        <i class="fas fa-dumbbell"></i>
+                    </div>
+                    <div class="facility-content">
+                        <h4>Phòng gym & phục hồi chức năng</h4>
+                        <p>Phòng gym với đầy đủ trang thiết bị tập luyện thể lực chuyên biệt cho cầu thủ bóng đá. Khu vực phục hồi chức năng với máy massage, bể sục jacuzzi và phòng xông hơi.</p>
+                        <p>Đội ngũ chuyên gia thể lực và vật lý trị liệu luôn sẵn sàng hỗ trợ cầu thủ.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Testimonials -->
+            <div class="section-title">
+                <h2>CẢM NHẬN</h2>
+                <p>Những chia sẻ từ phụ huynh và cựu học viên</p>
+            </div>
+            
+            <div class="testimonials">
+                <div class="testimonial-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">
+                            Con tôi đã tham gia Phoenix FC được 2 năm. Tôi thực sự ấn tượng với sự tiến bộ của cháu không chỉ về kỹ thuật bóng đá mà còn về tính kỷ luật và tinh thần đồng đội.
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="author-info">
+                                <h5>Anh Nguyễn Văn Tiến Dũng</h5>
+                                <p>Phụ huynh học viên U14</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">
+                            Phoenix FC đã cho tôi nền tảng vững chắc để trở thành cầu thủ chuyên nghiệp. Các huấn luyện viên không chỉ dạy bóng đá mà còn dạy cách trở thành người có trách nhiệm.
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="author-info">
+                                <h5>Nguyễn Bình Giang</h5>
+                                <p>Cựu học viên, hiện thi đấu cho CLB Hà Nội</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">
+                            Môi trường đào tạo chuyên nghiệp, cơ sở vật chất hiện đại và quan trọng nhất là đội ngũ huấn luyện viên tận tâm. Tôi hoàn toàn tin tưởng khi gửi con trai theo học tại đây.
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="author-info">
+                                <h5>Đoàn Tuấn Hùng</h5>
+                                <p>Phụ huynh học viên U12</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-futbol" style="color: #6a11cb; font-size: 24px;"></i>
+                    <span>PHOENIX FC</span>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html">Trang Chủ</a>
+                    <a href="trang2.html">Thông Tin CLB</a>
+                    <a href="trang3.html">Giới Thiệu Thêm</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 1836 Phoenix Football Club. Tất cả các quyền được bảo lưu.</p>
+                <div class="darknessgod">DarknessGod</div>
+                <p>Website được thiết kế và phát triển bởi <a href="#">DarknessGod</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Thêm hiệu ứng scroll cho header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.background = 'rgba(0, 0, 0, 0.95)';
+                header.style.padding = '15px 0';
+            } else {
+                header.style.background = 'rgba(0, 0, 0, 0.85)';
+                header.style.padding = '20px 0';
+            }
+        });
+    </script>
+</body>
+</html>

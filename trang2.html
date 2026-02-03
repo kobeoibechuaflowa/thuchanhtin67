@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Câu Lạc Bộ Bóng Đá Phoenix | Thông Tin CLB</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0c2461 0%, #1e3799 100%);
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-img {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #4a69bd, #6a89cc);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .logo-text h1 {
+            font-size: 28px;
+            background: linear-gradient(to right, #4a69bd, #6a89cc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 1px;
+        }
+
+        .logo-text p {
+            font-size: 14px;
+            color: #aaa;
+            letter-spacing: 2px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover, nav a.active {
+            color: #4a69bd;
+            background: rgba(74, 105, 189, 0.1);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: #4a69bd;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 80%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1575361204480-aadea25e6e68?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            position: relative;
+            margin-top: 100px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            text-align: center;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #4a69bd, #6a89cc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            color: #ddd;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 100px 0;
+            background: #0a1a3a;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            margin-bottom: 15px;
+            color: #4a69bd;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: #4a69bd;
+        }
+
+        .section-title p {
+            color: #aaa;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .club-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(74, 105, 189, 0.1);
+        }
+
+        .info-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(74, 105, 189, 0.3);
+        }
+
+        .info-card h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #4a69bd;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-card h3 i {
+            font-size: 28px;
+        }
+
+        .info-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .info-card ul li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-card ul li:last-child {
+            border-bottom: none;
+        }
+
+        .info-card ul li i {
+            color: #4a69bd;
+        }
+
+        /* Media Section */
+        .media-section {
+            margin-bottom: 80px;
+        }
+
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .media-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .media-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .media-image {
+            height: 200px;
+            width: 100%;
+            background: linear-gradient(45deg, #4a69bd, #6a89cc);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            color: white;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .media-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .media-image video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .media-content {
+            padding: 20px;
+        }
+
+        .media-content h4 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #4a69bd;
+        }
+
+        /* Nút Xem Thư Viện */
+        .library-btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 12px 25px;
+            background: linear-gradient(45deg, #4a69bd, #6a89cc);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .library-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(74, 105, 189, 0.3);
+            background: linear-gradient(45deg, #3a59ad, #5a79bc);
+        }
+
+        /* Activities Timeline */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background: #4a69bd;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-content {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            position: relative;
+            border: 1px solid rgba(74, 105, 189, 0.2);
+        }
+
+        .timeline-content h4 {
+            color: #4a69bd;
+            margin-bottom: 10px;
+        }
+
+        .timeline-content .date {
+            color: #aaa;
+            font-size: 14px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #4a69bd;
+            border: 4px solid #0a1a3a;
+            border-radius: 50%;
+            top: 15px;
+            right: -10px;
+            z-index: 1;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -10px;
+        }
+
+        /* Footer */
+        footer {
+            background: #09152e;
+            padding: 40px 0 20px;
+            text-align: center;
+            border-top: 3px solid #4a69bd;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-logo span {
+            font-size: 24px;
+            font-weight: bold;
+            background: linear-gradient(to right, #4a69bd, #6a89cc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #4a69bd;
+        }
+
+        .copyright {
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        .copyright a {
+            color: #4a69bd;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .darknessgod {
+            font-family: 'Courier New', monospace;
+            font-size: 18px;
+            color: #4a69bd;
+            margin-top: 10px;
+            letter-spacing: 2px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .darknessgod::before, .darknessgod::after {
+            content: '♛';
+            margin: 0 10px;
+            color: #4a69bd;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            nav ul {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h2 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .timeline::after {
+                left: 31px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+
+            .timeline-item::after {
+                left: 21px;
+            }
+
+            .timeline-item:nth-child(even)::after {
+                left: 21px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="anh1.png" alt="Phoenix Football Club Logo" class="logo-img">
+                    <div class="logo-text">
+                        <h1>PHOENIX FOOTBALL CLUB</h1>
+                        <p>VƯƠN CAO TỪ TRO TÀN</p>
+                    </div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Trang Chủ</a></li>
+                        <li><a href="trang2.html" class="active">Thông Tin CLB</a></li>
+                        <li><a href="trang3.html">Giới Thiệu Thêm</a></li>
+                        <li><a href="thuvien.html">Thư Viện</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>THÔNG TIN CHI TIẾT VỀ PHOENIX FC</h2>
+                <p>Khám phá lịch sử hình thành, cơ cấu tổ chức, hoạt động và những thành tựu nổi bật của câu lạc bộ</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="main-content">
+        <div class="container">
+            <!-- Club Information -->
+            <div class="section-title">
+                <h2>THÔNG TIN CÂU LẠC BỘ</h2>
+                <p>Tìm hiểu chi tiết về cấu trúc và hoạt động của Phoenix Football Club</p>
+            </div>
+            
+            <div class="club-info">
+                <div class="info-card">
+                    <h3><i class="fas fa-history"></i> Lịch Sử Hình Thành</h3>
+                    <p>Phoenix FC được thành lập vào năm 2010 bởi cựu cầu thủ chuyên nghiệp Vũ Đình Đức. Từ một nhóm nhỏ những người yêu bóng đá, câu lạc bộ đã phát triển thành một tổ chức với hơn 200 thành viên và 5 đội tuyển thuộc các lứa tuổi khác nhau.</p>
+                    <p>Năm 2015, câu lạc bộ chuyển đến trụ sở hiện tại với đầy đủ cơ sở vật chất hiện đại, đánh dấu bước phát triển vượt bậc trong sự nghiệp đào tạo bóng đá trẻ.</p>
+                </div>
+                
+                <div class="info-card">
+                    <h3><i class="fas fa-users"></i> Cơ Cấu Tổ Chức</h3>
+                    <ul>
+                        <li><i class="fas fa-user-tie"></i> <strong>Chủ tịch:</strong> Nguyễn Văn Tiến Dũng</li>
+                        <li><i class="fas fa-user-tie"></i> <strong>Giám đốc kỹ thuật:</strong> Đoàn Tuấn Hùng (cựu tuyển thủ quốc gia)</li>
+                        <li><i class="fas fa-running"></i> <strong>Huấn luyện viên trưởng:</strong> Nguyễn Bình Giang (UEFA Pro License)</li>
+                        <li><i class="fas fa-user-md"></i> <strong>Bác sĩ thể thao:</strong> Đoàn Tuấn Hùng</li>
+                        <li><i class="fas fa-user-graduate"></i> <strong>Đào tạo viên:</strong> 10 HLV chuyên nghiệp</li>
+                    </ul>
+                </div>
+                
+                <div class="info-card">
+                    <h3><i class="fas fa-trophy"></i> Thành Tích Nổi Bật</h3>
+                    <ul>
+                        <li><i class="fas fa-award"></i> Vô địch giải U17 thành phố 3 năm liên tiếp (2018-2020)</li>
+                        <li><i class="fas fa-award"></i> Á quân giải U19 quốc gia 2021</li>
+                        <li><i class="fas fa-award"></i> Vô địch giải giao hữu quốc tế U16 tại Thái Lan 2019</li>
+                        <li><i class="fas fa-award"></i> 5 cầu thủ được gọi vào đội tuyển trẻ quốc gia</li>
+                        <li><i class="fas fa-award"></i> 3 cầu thủ chuyển sang thi đấu chuyên nghiệp tại V-League</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Media Section -->
+            <div class="section-title">
+                <h2>HÌNH ẢNH & VIDEO</h2>
+                <p>Cập nhật những khoảnh khắc đáng nhớ của câu lạc bộ</p>
+            </div>
+            
+            <div class="media-section">
+                <div class="media-grid">
+                    <div class="media-card">
+                        <div class="media-image">
+                            <img src="anh2.png" alt="Hoạt động tập luyện của Phoenix FC">
+                        </div>
+                        <div class="media-content">
+                            <h4>Hình ảnh hoạt động</h4>
+                            <p>Hình ảnh về các hoạt động tập luyện của câu lạc bộ</p>
+                        </div>
+                    </div>
+                    
+                    <div class="media-card">
+                        <div class="media-image">
+                            <video controls>
+                                <source src="video1.mp4" type="video/mp4">
+                                Trình duyệt của bạn không hỗ trợ video.
+                            </video>
+                        </div>
+                        <div class="media-content">
+                            <h4>Video thi đấu</h4>
+                            <p>Video về các trận đấu và hoạt động tập luyện</p>
+                        </div>
+                    </div>
+                    
+                    <div class="media-card">
+                        <div class="media-image">
+                            <img src="anh3.png" alt="Kho video của Phoenix FC">
+                        </div>
+                        <div class="media-content">
+                            <h4>Thư Viện Media</h4>
+                            <p>Xem toàn bộ hình ảnh và video của câu lạc bộ</p>
+                            <a href="thuvien.html" class="library-btn">Xem Thư Viện</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Activities Timeline -->
+            <div class="section-title">
+                <h2>HOẠT ĐỘNG NỔI BẬT</h2>
+                <p>Lịch trình các sự kiện và hoạt động quan trọng của câu lạc bộ</p>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="date">Tháng 9, 2023</span>
+                        <h4>Khai giảng khóa đào tạo mới</h4>
+                        <p>Tuyển sinh và khai giảng khóa đào tạo bóng đá trẻ năm học 2023-2024 cho các lứa tuổi U10, U12, U14, U16, U18.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="date">Tháng 10, 2023</span>
+                        <h4>Giải giao hữu quốc tế</h4>
+                        <p>Tham dự giải giao hữu U16 quốc tế tại Singapore với sự tham gia của 8 đội bóng đến từ 5 quốc gia.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="date">Tháng 11, 2023</span>
+                        <h4>Hội thảo bóng đá trẻ</h4>
+                        <p>Tổ chức hội thảo "Phát triển tài năng bóng đá trẻ" với sự tham gia của các chuyên gia trong và ngoài nước.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <span class="date">Tháng 12, 2023</span>
+                        <h4>Giải vô địch trẻ thành phố</h4>
+                        <p>Tham dự giải vô địch bóng đá trẻ thành phố với mục tiêu bảo vệ chức vô địch ở cả 3 lứa tuổi U14, U16, U18.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-futbol" style="color: #4a69bd; font-size: 24px;"></i>
+                    <span>PHOENIX FC</span>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html">Trang Chủ</a>
+                    <a href="trang2.html">Thông Tin CLB</a>
+                    <a href="trang3.html">Giới Thiệu Thêm</a>
+                    <a href="thuvien.html">Thư Viện</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 1836 Phoenix Football Club. Tất cả các quyền được bảo lưu.</p>
+                <div class="darknessgod">DarknessGod</div>
+                <p>Website được thiết kế và phát triển bởi <a href="#">DarknessGod</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Thêm hiệu ứng scroll cho header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.background = 'rgba(0, 0, 0, 0.95)';
+                header.style.padding = '15px 0';
+            } else {
+                header.style.background = 'rgba(0, 0, 0, 0.9)';
+                header.style.padding = '20px 0';
+            }
+        });
+    </script>
+</body>
+</html>
