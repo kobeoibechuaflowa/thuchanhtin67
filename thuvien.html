@@ -27,7 +27,7 @@
             padding: 0 20px;
         }
 
-        /* Header */
+        /* Đầu web */
         header {
             background: rgba(0, 0, 0, 0.9);
             padding: 20px 0;
@@ -116,7 +116,7 @@
             width: 80%;
         }
 
-        /* Hero Section */
+        /* Lựa chọn pokemon */
         .hero {
             height: 50vh;
             display: flex;
@@ -149,7 +149,7 @@
             color: #ddd;
         }
 
-        /* Main Content */
+        /* Nd chính */
         .main-content {
             padding: 80px 0;
             background: #0a1a3a;
@@ -185,7 +185,7 @@
             margin: 0 auto;
         }
 
-        /* Tabs Navigation */
+        /* Tabs */
         .tabs {
             display: flex;
             justify-content: center;
@@ -217,7 +217,7 @@
             border-bottom: 3px solid #4a69bd;
         }
 
-        /* Gallery Grid */
+        /* Thư viện */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -354,7 +354,7 @@
             justify-content: center;
         }
 
-        /* Footer */
+        /* Chân đá */
         footer {
             background: #09152e;
             padding: 40px 0 20px;
@@ -429,7 +429,7 @@
             color: #4a69bd;
         }
 
-        /* Responsive */
+        /* Trách nghiệm */
         @media (max-width: 768px) {
             .header-content {
                 flex-direction: column;
@@ -478,7 +478,7 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
+    <!-- Đầu web -->
     <header>
         <div class="container">
             <div class="header-content">
@@ -501,7 +501,7 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Lựa chọn pokemon -->
     <section class="hero">
         <div class="container">
             <div class="hero-content">
@@ -511,7 +511,7 @@
         </div>
     </section>
 
-    <!-- Main Content -->
+    <!-- Nd chính -->
     <section class="main-content">
         <div class="container">
             <div class="section-title">
@@ -519,7 +519,7 @@
                 <p>Lưu giữ những khoảnh khắc đẹp nhất của câu lạc bộ qua từng mùa giải</p>
             </div>
 
-            <!-- Tabs Navigation -->
+            <!-- Tabs -->
             <div class="tabs">
                 <button class="tab-btn active" data-tab="all">Tất Cả</button>
                 <button class="tab-btn" data-tab="images">Hình Ảnh</button>
@@ -528,7 +528,7 @@
                 <button class="tab-btn" data-tab="training">Tập Luyện</button>
             </div>
 
-            <!-- Gallery Grid -->
+            <!-- Thư viện -->
             <div class="gallery-grid" id="gallery-container">
                 <!-- Media items will be dynamically filtered by JavaScript -->
                 
@@ -639,7 +639,7 @@
         </div>
     </section>
 
-    <!-- Modal for larger view -->
+    <!-- Modal for video lớn -->
     <div class="modal" id="mediaModal">
         <div class="modal-content">
             <span class="close-modal" id="closeModal">&times;</span>
@@ -654,7 +654,7 @@
         </div>
     </div>
 
-    <!-- Footer -->
+    <!-- Chân đá -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -678,20 +678,20 @@
     </footer>
 
     <script>
-        // Tab filtering functionality
+        // Tab chuyển
         document.addEventListener('DOMContentLoaded', function() {
             const tabBtns = document.querySelectorAll('.tab-btn');
             const mediaItems = document.querySelectorAll('.media-item');
             
             tabBtns.forEach(btn => {
                 btn.addEventListener('click', function() {
-                    // Update active tab
+                    // Update
                     tabBtns.forEach(b => b.classList.remove('active'));
                     this.classList.add('active');
                     
                     const filter = this.getAttribute('data-tab');
                     
-                    // Filter media items
+                    // Công cụ
                     mediaItems.forEach(item => {
                         if (filter === 'all') {
                             item.style.display = 'block';
@@ -810,4 +810,5 @@
         });
     </script>
 </body>
+
 </html>
